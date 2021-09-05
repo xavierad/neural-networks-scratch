@@ -112,7 +112,7 @@ if __name__=='__main__':
     #     print(layer)
 
     # Test training backprop algorithm
-    print(10*'--'+' Training network '+10*'--')
+    print('\n'+10*'--'+' Training network '+10*'--')
     seed(1)
     dataset = [[2.7810836,2.550537003,0],
         [1.465489372,2.362125076,0],
@@ -127,14 +127,14 @@ if __name__=='__main__':
     n_inputs = len(dataset[0]) - 1
     n_outputs = len(set([row[-1] for row in dataset]))
     epochs=100
-    l_rate=0.001
+    l_rate=0.5
     network = initialize_network(n_inputs, 2, n_outputs)
     train_network(network, dataset, l_rate, epochs, n_outputs)
     for layer in network:
         print(layer)
 
     # Test making predictions with the network
-    print(10*'--'+' Making predictions '+10*'--')
+    print('\n'+10*'--'+' Making predictions '+10*'--')
     dataset = [[2.7810836,2.550537003,0],
         [1.465489372,2.362125076,0],
         [3.396561688,4.400293529,0],
@@ -145,8 +145,7 @@ if __name__=='__main__':
         [6.922596716,1.77106367,1],
         [8.675418651,-0.242068655,1],
         [7.673756466,3.508563011,1]]
-    network = [[{'weights': [-1.482313569067226, 1.8308790073202204, 1.078381922048799]}, {'weights': [0.23244990332399884, 0.3621998343835864, 0.40289821191094327]}],
-        [{'weights': [2.5001872433501404, 0.7887233511355132, -1.1026649757805829]}, {'weights': [-2.429350576245497, 0.8357651039198697, 1.0699217181280656]}]]
+
     for row in dataset:
         prediction = predict(network, row)
         print('Expected=%d, Got=%d' % (row[-1], prediction))
